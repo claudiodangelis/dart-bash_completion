@@ -1,0 +1,19 @@
+_dart() {
+    # TODO: complete only *.dart files
+    local cur prev opts
+    COMPREPLY=()
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    prev="${COMP_WORDS[COMP_CWORD-1]}"
+
+    # Options
+    opts="--help --checked --package-root --version"
+
+    if [[ ${cur} == -* ]] ; then
+        COMPREPLY=( $(compgen -W "${opts}" -- ${cur}) )
+        return 0;
+    else
+        COMPREPLY=()
+    fi
+}
+
+complete -o default -F _dart dart

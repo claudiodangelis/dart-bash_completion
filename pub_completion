@@ -117,9 +117,11 @@ _pub() {
     elif [[ ${#COMP_WORDS[@]} < 3 ]] ; then
         COMPREPLY=( $(compgen -W "${cmds}" -- ${cur}) )
         return 0
+    else
+        COMPREPLY=()
     fi
 
 }
 
-complete -F _pub pub
+complete -o default -F _pub pub
 
