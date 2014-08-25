@@ -15,7 +15,7 @@ Collection of scripts to provide tab completion in Bash for Dart SDK command lin
 
 ## Installation
 
-- **Linux**: install the `bash-completion` package from your distro's package manager (you may already have it installed), then copy these scripts to `/etc/bash_completion.d`. 
+- **Linux**: install the `bash-completion` package from your distro's package manager (you may already have it installed), then copy these scripts to `/etc/bash_completion.d`.
 
 - **Mac OS X**: install the `bash-completion` package from your favorite package manager (e.g. Homebrew, MacPorts, etc), then copy these scripts to to `/etc/bash_completion.d`. Note that you can find this directory under `/sw/etc` or `/opt/local/etc`.
 
@@ -28,6 +28,10 @@ A note for developers: you can quickly load these scripts in the current shell b
     . ./pub
     # ...... and so on
 
+
+## Screencast
+
+![Screencast](screencast.gif)
 
 ## License
 
