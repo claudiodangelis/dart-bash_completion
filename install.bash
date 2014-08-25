@@ -22,7 +22,7 @@ if [[ "$OSTYPE" == "linux-gnu" ]] || [[ "$OSTYPE" == "darwin"* ]] ; then
     fi
   else 
     # TODO: Add check with brew...
-    echo "OSX CHECK" > /dev/null
+    read -p "Make sure you have the bash-completion package installed before continuing (press enter to continue, Ctrl+C to cancel)"
   fi
   
   # Install completion scripts 
