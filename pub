@@ -23,7 +23,7 @@ _pub() {
         --no-force-poll --force-poll"
 
     upgrade_opts="--help --no-offline --offline"
-    uploader_opts="--help --server --package"+
+    uploader_opts="--help --server --package"
     version_opts="--help" # We can probably get rid of this
 
     case "${prev}" in
