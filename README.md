@@ -23,9 +23,9 @@ You have to restart the shell to get completion running.
 
 A note for developers: you can quickly load these scripts in the current shell by typing:
 
-    . dart_completion
-    . dart2js_completion
-    . pub_completion
+    . ./dart
+    . ./dart2js
+    . ./pub
     # ...... and so on
 
 
