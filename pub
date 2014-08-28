@@ -4,21 +4,28 @@ _pub() {
     COMPREPLY=()
     cur="${COMP_WORDS[COMP_CWORD]}"
     prev="${COMP_WORDS[COMP_CWORD-1]}"
+
     # Commands
-    cmds="build cache deps get help publish serve upgrade uploader version"
-    # Options
-    opts="--help --version --no-trace --trace --verbosity --verbose"
+    cmds="build cache deps get global help publish run serve upgrade uploader \
+        version"
 
     # Per-command subcommands
     cache_cmds="add repair"
+    global_cmds="activate deactivate run"
+
+
+    # Global options
+    opts="--help --version --no-trace --trace --verbosity --verbose"
 
     # Per-command options
     build_opts="--help --mode --all --format --output"
     cache_opts="--help"
     deps_opts="--help --style"
     get_opts="--help --no-offline --offline"
+    global_opts="--help"
     help_opts="--help" # We can probably get rid of this
     publish_opts="--help --dry-run --force --server"
+    run_opts="--help"
     serve_opts="--help --mode --all --hostname --port --no-dart2js --dart2js \
         --no-force-poll --force-poll"
 
@@ -26,10 +33,19 @@ _pub() {
     uploader_opts="--help --server --package"
     version_opts="--help" # We can probably get rid of this
 
+    if [[ ${cur} == -* ]] ; then
+        COMPREPLY=( $(compgen -W "${opts}" -- ${cur}) )
+    else
+        COMPREPLY=( $(compgen -W "${cmds}" -- ${cur}) )
+    fi
+
     case "${prev}" in
         build)
             if [[ ${cur} == -* ]] ; then
                 COMPREPLY=( $(compgen -W "${build_opts}" -- ${cur}) )
+                return 0
+            else
+                COMPREPLY=()
                 return 0
             fi
             ;;
@@ -40,12 +56,16 @@ _pub() {
                 return 0
             else
                 COMPREPLY=( $(compgen -W "${cache_cmds}" -- ${cur}) )
+                return 0
             fi
             ;;
 
         deps)
             if [[ ${cur} == -* ]] ; then
                 COMPREPLY=( $(compgen -W "${deps_opts}" -- ${cur}) )
+                return 0
+            else
+                COMPREPLY=()
                 return 0
             fi
             ;;
@@ -55,6 +75,19 @@ _pub() {
             if [[ ${cur} == -* ]] ; then
                 COMPREPLY=( $(compgen -W "${get_opts}" -- ${cur}) )
                 return 0
+            else
+                COMPREPLY=()
+                return 0
+            fi
+            ;;
+
+        global)
+            if [[ ${cur} == -* ]] ; then
+                COMPREPLY=( $(compgen -W "${global_opts}" -- ${cur}) )
+                return 0
+            else
+                COMPREPLY=( $(compgen -W "${global_cmds}" -- ${cur}) )
+                return 0
             fi
             ;;
 
@@ -62,6 +95,9 @@ _pub() {
         help)
             if [[ ${cur} == -* ]] ; then
                 COMPREPLY=( $(compgen -W "${help_opts}" -- ${cur}) )
+                return 0
+            else
+                COMPREPLY=()
                 return 0
             fi
             ;;
@@ -71,6 +107,19 @@ _pub() {
             if [[ ${cur} == -* ]] ; then
                 COMPREPLY=( $(compgen -W "${publish_opts}" -- ${cur}) )
                 return 0
+            else
+                COMPREPLY=()
+                return 0
+            fi
+            ;;
+
+        run)
+            if [[ ${cur} == -* ]] ; then
+                COMPREPLY=( $(compgen -W "${run_opts}" -- ${cur}) )
+                return 0
+            else
+                COMPREPLY=()
+                return 0
             fi
             ;;
 
@@ -78,6 +127,9 @@ _pub() {
         serve)
             if [[ ${cur} == -* ]] ; then
                 COMPREPLY=( $(compgen -W "${serve_opts}" -- ${cur}) )
+                return 0
+            else
+                COMPREPLY=()
                 return 0
             fi
             ;;
@@ -87,6 +139,9 @@ _pub() {
             if [[ ${cur} == -* ]] ; then
                 COMPREPLY=( $(compgen -W "${upgrade_opts}" -- ${cur}) )
                 return 0
+            else
+                COMPREPLY=()
+                return 0
             fi
             ;;
 
@@ -94,6 +149,9 @@ _pub() {
         uploader)
             if [[ ${cur} == -* ]] ; then
                 COMPREPLY=( $(compgen -W "${uploader_opts}" -- ${cur}) )
+                return 0
+            else
+                COMPREPLY=()
                 return 0
             fi
             ;;
@@ -103,6 +161,9 @@ _pub() {
             if [[ ${cur} == -* ]] ; then
                 COMPREPLY=( $(compgen -W "${version_opts}" -- ${cur}) )
                 return 0
+            else
+                COMPREPLY=()
+                return 0
             fi
             ;;
 
@@ -111,17 +172,6 @@ _pub() {
 
         esac
 
-    if [[ ${cur} == -* ]] ; then
-        COMPREPLY=( $(compgen -W "${opts}" -- ${cur}) )
-        return 0
-    elif [[ ${#COMP_WORDS[@]} < 3 ]] ; then
-        COMPREPLY=( $(compgen -W "${cmds}" -- ${cur}) )
-        return 0
-    else
-        COMPREPLY=()
-    fi
-
 }
 
 complete -o default -F _pub pub
-
