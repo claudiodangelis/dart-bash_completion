@@ -28,7 +28,7 @@ Alternatively, you can manually install these scripts as follows:
 - **Mac OS X**: install the `bash-completion` package from your favorite package manager (e.g. Homebrew, MacPorts, etc), then copy these scripts to to `/etc/bash_completion.d`. Note that you can find this directory under `/sw/etc` or `/opt/local/etc`.
 
 
-
+Arch Linux users can get the [bash-completion-dart-git](https://aur.archlinux.org/packages/bash-completion-dart-git/)  package from AUR.
 
 You have to restart the shell to get completion running.
 
